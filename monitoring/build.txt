@@ -1,0 +1,375 @@
+    1  sudo passwd root
+    2  sudo su -
+    3  ssh 10.0.1.201
+    4  for i in "10.0.1.201 10.0.1.202 10.0.1.203" ; do echo hi ; done
+    5  sudo apt-get install vim
+    6  vim /boot/firmware/cmdline.txt 
+    7  sudo vim /boot/firmware/cmdline.txt 
+    8  ssh 10.0.1.201
+    9  ssh 10.0.1.202
+   10  ssh 10.0.1.203
+   11  init 6
+   12  hostname
+   13  sudo hostnamectl set-hostname dublin0
+   14  hostname
+   15  lsb_release -a
+   16  getconf LONG_BIT
+   17  ssh 10.0.1.201
+   18  ssh 10.0.1.202
+   19  ssh 10.0.1.203
+   20  hostname
+   21  init 6
+   22  sudo su -
+   23  free -m
+   24  helm
+   25  kubectl
+   26  pwd
+   27  sudo su -
+   28  kubectl config get-contexts
+   29  sudo kubectl config get-contexts
+   30  touch .kube/config
+   31  mkdir .kube
+   32  touch .kube/config
+   33  rm .kube/config 
+   34  sudo ll /etc/rancher/k3s/k3s.yaml 
+   35  alias ll='ls -lah'
+   36  sudo ll /etc/rancher/k3s/k3s.yaml 
+   37  alias ll="ls -lah"
+   38  ll
+   39  sudo ll /etc/rancher/k3s/k3s.yaml 
+   40  sudo alias ll="ls -lah"
+   41  sudo vim $HOME/.bashrc
+   42  sudo su -
+   43  ll
+   44  sudo ll
+   45  sudo ls -la /etc/rancher/k3s/k3s.yaml 
+   46  sudo chmod 660 /etc/rancher/k3s/k3s.yaml
+   47  kubectl config get-contexts
+   48  sudo su -
+   49  kubectl config get-contexts
+   50  sudo kubectl config get-contexts
+   51  sudo vim $HOME/.bashrc
+   52  k
+   53  kc
+   54  sudo vim $HOME/.bashrc
+   55  k
+   56  alias k="kubectl"
+   57  alias k="sudo kubectl"
+   58  k config get-contexts
+   59  sudo vim $HOME/.bashrc
+   60  git
+   61  pwd
+   62  mkdir charts
+   63  cd charts/
+   64  git clone https://github.com/prometheus-operator/prometheus-operator.git
+   65  cd prometheus-operator/
+   66  grep namespace bundle.yaml 
+   67  grep namespace: bundle.yaml 
+   68  sed -i 's/namespace: default/namespace: monitoring/g' bundle.yaml
+   69  grep namespace: bundle.yaml 
+   70  k apply -n monitoring -f bundle.yaml 
+   71  sudo su -
+   72  service
+   73  service --status-all
+   74  k get nodes
+   75  sudo export KUBECONFIG=/etc/rancher/k3s/k3s.yaml >> ~/.bashrc
+   76  sudo su -
+   77  systemctl start k3s
+   78  sudo systemctl start k3s
+   79  sudo su -
+   80  cd charts/
+   81  ll
+   82  cd prometheus-
+   83  cd prometheus-operator/
+   84  ll
+   85  k get nodes
+   86  k get pods -n monitoring
+   87  k get pods -
+   88  sudo su -
+   89  grep namespace: bundle.yaml 
+   90  k get namespace
+   91  sed -i 's/namespace: monitoring/namespace: monitor/g' bundle.yaml
+   92  grep namespace: bundle.yaml 
+   93  vim bundle.yaml 
+   94  grep -ri traefik
+   95  k apply -n monitor -f bundle.yaml 
+   96  find . -name monitoring.coreos.com_prometheuses.yaml
+   97  k create -f example/prometheus-operator-crd/monitoring.coreos.com_prometheuses.yaml
+   98  k get pods -n monitor
+   99  cd
+  100  mkdir monitoring
+  101  cd monitoring
+  102  touch longhorn-servicemonitor.yaml
+  103  vim longhorn-servicemonitor.yaml 
+  104  ll
+  105  cd ..
+  106  ll
+  107  cd
+  108  mkdir charts/monitoring
+  109  mv monitoring/longhorn-servicemonitor.yaml charts/monitoring/
+  110  rmdir monitoring/
+  111  cd charts/monitoring/
+  112  vim ../prometheus-kube/helm/prometheus/values.yaml 
+  113  grep -ri traefik ../prometheus-kube/
+  114  k get storageclass
+  115  k get pv
+  116  df -h
+  117  k get --raw / api / v1 / persistentvolumeclaims
+  118  k get --raw/api/v1/persistentvolumeclaims
+  119  k get --raw /api/v1/persistentvolumeclaims
+  120  docker
+  121  vim cluster-role-binding.yaml
+  122  vim cluster-role.yaml
+  123  vim service-account.yaml
+  124  vim service.yaml
+  125  vim daemonset.yaml
+  126  vim service-monitor.yaml
+  127  ll
+  128  mkdir ../old/
+  129  mv longhorn-servicemonitor.yaml ../old/
+  130  mkdir node-exporter
+  131  mv *.yaml node-exporter/
+  132  ll
+  133  cd node-exporter/
+  134  cd ..
+  135  k apply -f node-exporter/
+  136  cd node-exporter/
+  137  grep -ri monitoring
+  138  sed -i 's/namespace: monitoring/namespace: monitor/g' service-account.yaml cluster-role-binding.yaml service-monitor.yaml service.yaml 
+  139  grep -r "namespace: mon" .
+  140  sed -i 's/namespace: monitoring/namespace: monitor/g' daemonset.yaml 
+  141  cd ..
+  142  k apply -f node-exporter/
+  143  k get pods -n monitor
+  144  mkdir kube-state-metrics
+  145  vim kube-state-metrics/kube-state-metrics-clusterRole.yaml
+  146  cd kube-state-metrics/
+  147  touch kube-state-metrics-clusterRoleBinding.yaml
+  148  touch kube-state-metrics-serviceAccount.yaml
+  149  touch kube-state-metrics-service.yaml
+  150  touch kube-state-metrics-deployment.yaml
+  151  touch kube-state-metrics-serviceMonitor.yaml
+  152  vim kube-state-metrics-clusterRoleBinding.yaml
+  153  vim kube-state-metrics-serviceAccount.yaml
+  154  vim kube-state-metrics-service.yaml
+  155  vim kube-state-metrics-deployment.yaml
+  156  vim kube-state-metrics-serviceMonitor.yaml
+  157  cd ..
+  158  k apply -f kube-state-metrics/
+  159  k get pods -n monitor
+  160  k describe pod kube-state-metrics-6f8f5578-9fj9w -n monitor
+  161  grep -ri kube-state-monitor
+  162  grep -ri kube-state-metrics
+  163  grep -ri affinity
+  164  k get nodes
+  165  k describe node dublin1
+  166  k label nodes dublin1 node-type=worker
+  167  k label nodes dublin2 dublin3 node-type=worker
+  168  k get pods -n monitor
+  169  k get hgtfrderftgyhgtfrderftgyhgtfrderftgyh
+  170  k get nodes
+  171  k get nodes -o wide
+  172  mkdir kubelet
+  173  touch kubelet/kubelet-servicemonitor.yaml
+  174  vim kubelet/kubelet-servicemonitor.yaml
+  175  grep -r namespace kubelet/
+  176  k apply -f kubelet/
+  177  mkdir traefik
+  178  vim traefik/traefik-servicemonitor.yaml
+  179  k apply -f traefik/
+  180  k get ServiceMonitor -n monitor
+  181  k get pods -n monitor
+  182  k get pods --all-namespaces
+  183  mkdir prometheus
+  184  vim prometheus/prometheus.yaml
+  185  k get storageclass
+  186  vim prometheus/prometheus.yaml
+  187  vim prometheus/prometheus-service-ext.yaml
+  188  cd ..
+  189  grep -ri loadbalancer
+  190  vim prometheus-kube/helm/prometheus/values.yaml
+  191  vim prometheus/prometheus-service-ext.yaml
+  192  cd monitoring/
+  193  vim prometheus/prometheus-service-ext.yaml
+  194  grep -r spec ../prometheus-kube/
+  195  vim ../prometheus-kube/helm/prometheus/templates/deployment.yaml
+  196  vim ../prometheus-kube/helm/prometheus/templates/ingress.yaml 
+  197  ll
+  198  vim ../prometheus-kube/helm/prometheus/templates/service.yaml 
+  199  vim ../prometheus-kube/helm/prometheus/templates/deployment.yaml 
+  200  vim ../prometheus-kube/helm/prometheus/templates/ingress.yaml 
+  201  vim ../prometheus-kube/helm/prometheus/Chart.yaml 
+  202  vim ../prometheus-kube/helm/prometheus/values.yaml 
+  203  ll
+  204  cd prometheus/
+  205  ll
+  206  vim prometheus
+  207  vim prometheus-service-ext.yaml 
+  208  cd charts/
+  209  cd monitoring/
+  210  cd prometheus/
+  211  ll
+  212  vim prometheus-service-ext.yaml 
+  213  ll
+  214  vim prometheus.yaml 
+  215  vim prometheus-service-ext.yaml 
+  216  vim prometheus-service-local.yaml 
+  217  vim prometheus-serviceaccount.yaml
+  218  vim prometheus-rbac-role-binding.yaml
+  219  vim prometheus-rbac-clusterrole.yaml
+  220  vim prometheus-service-ext.yaml 
+  221  grp -r "type"
+  222  grep -r "type"
+  223  cp prometheus-service-ext.yaml ../../old/
+  224  vim prometheus-service-ext.yaml 
+  225  cd ..
+  226  ll
+  227  cd ..
+  228  ll
+  229  grep -r "type: " .
+  230  grep -r "type: " . | grep -v example
+  231  grep -r "type: " . | grep -v prometheus
+  232  ll
+  233  vim whoami.yaml 
+  234  cd prometheus-kube/
+  235  ll
+  236  cd ../cluster-monitoring/
+  237  cd ../monitoring/
+  238  ll
+  239  cd prometheus/
+  240  ll
+  241  grep -r "monitoring"
+  242  vim prometheus-service-ext.yaml 
+  243  grep -r "namespace"
+  244  ll
+  245  vim prometheus
+  246  vim prometheus.yaml 
+  247  cd ..
+  248  k apply -f prometheus/
+  249  sudo vim /etc/hosts
+  250  for i in 1 2 3 4 5 6 7 ; do ssh dublin$i echo "10.0.1.200 dublin0  dashboard.traefik whoami.localhost whoami.kube prom.kube
+  251  10.0.1.201 dublin1
+  252  10.0.1.202 dublin2
+  253  10.0.1.203 dublin3
+  254  10.0.1.204 dublin4
+  255  10.0.1.205 dublin5
+  256  10.0.1.206 dublin6
+  257  10.0.1.207 dublin7" ; done
+  258  cat /etc/hosts
+  259  for i in 1 2 3 4 5 6 7 ; do ssh dublin$i sudo echo "127.0.0.1 localhost" ; done
+  260  for i in 1 2 3 4 5 6 7 ; do ssh dublin$i sudo echo "10.0.1.200 dublin0  dashboard.traefik whoami.localhost whoami.kube prom.kube
+  261  10.0.1.201 dublin1
+  262  10.0.1.202 dublin2
+  263  10.0.1.203 dublin3
+  264  10.0.1.204 dublin4
+  265  10.0.1.205 dublin5
+  266  10.0.1.206 dublin6
+  267  10.0.1.207 dublin7" ; done
+  268  for i in 1 2 3 4 5 6 7 ; do ssh dublin$i sudo echo "10.0.1.200 dublin0  dashboard.traefik whoami.localhost whoami.kube prom.kube
+  269  10.0.1.201 dublin1
+  270  10.0.1.202 dublin2
+  271  10.0.1.203 dublin3
+  272  10.0.1.204 dublin4
+  273  10.0.1.205 dublin5
+  274  10.0.1.206 dublin6
+  275  10.0.1.207 dublin7" > /etc/hosts ; done
+  276  for i in 1 2 3 4 5 6 7 ; do scp dublin$i ; done
+  277  sudo cp /etc/hosts /tmp/hosts
+  278  ll /tmp/hosts 
+  279  chmod 666 /tmp/hosts 
+  280  sudo chmod 666 /tmp/hosts 
+  281  chmod 666 /tmp/hosts 
+  282  ll /tmp/hosts 
+  283  ll
+  284  chown ubuntu:ubuntu /tmp/hosts 
+  285  sudo chown ubuntu:ubuntu /tmp/hosts 
+  286  for i in 1 2 3 4 5 6 7 ; do scp /tmp/hosts dublin$i:/tmp/hosts ; done
+  287  for i in 1 2 3 4 5 6 7 ; do ssh dublin$i sudo su - ; done
+  288  for i in 1 2 3 4 5 6 7 ; do ssh dublin$i && wait ; done
+  289  cat /etc/rancher/k3s/k3s.yaml 
+  290  ll
+  291  cd prometheus/
+  292  vim prometheus-ingress.yaml
+  293  k get ingress
+  294  k get ingress --all-namespaces
+  295  df -h
+  296  k get ingress --all-namespaces
+  297  k get pods --all-namespaces -l
+  298  k get
+  299  ket get -h
+  300  k get -h
+  301  k list resources
+  302  k get reso
+  303  k list resource --short-name
+  304  k list resource --short-names
+  305  k get resource --short-names
+  306  k get resource -short-names
+  307  k get all --all-namespaces
+  308  k get all
+  309  k get ingress --all-namespaces
+  310  k
+  311  k get ingress --all-namespaces
+  312  k get all --all-namespaces
+  313  k get ingress --all-namespaces
+  314  cd charts/monitoring/prometheus/
+  315  ll
+  316  vim prometheus-ingress.yaml 
+  317  k describe ingresses
+  318  vim prometheus-service-ext.yaml 
+  319  k get pods -n monitor
+  320  k get services -n monitor
+  321  k get services -n default
+  322  vim prometheus-ingress.yaml 
+  323  k apply -f prometheus-ingress.yaml 
+  324  vim prometheus-ingress.yaml 
+  325  k apply -f prometheus-ingress.yaml 
+  326  vim prometheus-ingress.yaml 
+  327  cp prometheus-ingress.yaml ../../old/
+  328  vim prometheus
+  329  vim prometheus-ingress.yaml 
+  330  k apply -f prometheus-ingress.yaml 
+  331  vim prometheus-ingress.yaml 
+  332  k describe service prometheus-external -n monitor
+  333  vim prometheus-ingress.yaml 
+  334  k apply -f prometheus-ingress.yaml 
+  335  k get ingresses --all-namespaces
+  336  k describe ingress prometheus-external -n montior
+  337* k describe ingress 
+  338  cd ..
+  339  mkdir grafana
+  340  cd grafana/
+  341  vim apiVersion: v1
+  342  vim grafana-pvc.yaml
+  343  vim grafana-deployment.yaml
+  344  vim grafana-serviceAccount.yaml
+  345  vim grafana-service.yaml
+  346  cat ../prometheus/prometheus-service-ext.yaml 
+  347  cat grafana-service.yaml 
+  348  vim grafana-service.yaml
+  349  cp ../prometheus/prometheus-ingress.yaml grafana-ingress.yaml
+  350  vim grafana-ingress.yaml 
+  351  grep -r "monitoring
+  352  grep -r "monitoring"
+  353  cd ..
+  354  k apply -f grafana/
+  355  sudo vim /etc/hosts
+  356  vim grafana-ingress.yaml 
+  357  vim grafana/grafana-ingress.yaml 
+  358  k get service -n monitor
+  359  cd ..
+  360  ll
+  361  cd prometheus-kube/
+  362  ll
+  363  cd ..
+  364  ll
+  365  cd prometheus-operator/
+  366  ll
+  367  cd ..
+  368  ll
+  369  cd cluster-monitoring/
+  370  ll
+  371  cd ..
+  372  cd monitoring/
+  373  ll
+  374  history
+  375  history > build.txt
